@@ -4,7 +4,7 @@ Path.join(["rel", "plugins", "*.exs"])
 
 use Mix.Releases.Config,
     default_release: :default,
-    default_environment: Mix.env()
+    default_environment: :prod
 
 environment :dev do
   set dev_mode: true
@@ -13,7 +13,7 @@ environment :dev do
 end
 
 environment :prod do
-  set include_erts: true
+  set include_erts: false
   set include_src: false
   set cookie: :"nomnomnom"
 end

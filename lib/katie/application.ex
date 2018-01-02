@@ -6,6 +6,8 @@ defmodule Katie.Application do
   use Application
 
   def start(_type, _args) do
+    IO.puts("Starting Katie.Application")
+
     # List all child processes to be supervised
     children = [
       # Starts a worker by calling: Katie.Worker.start_link(arg)

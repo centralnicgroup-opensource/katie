@@ -1,0 +1,6 @@
+-async_shell_start
+-init_debug
+-emu_args
+-start_epmd false
+-s observer start
+-name katie@127.0.0.1
