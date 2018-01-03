@@ -21,7 +21,10 @@ defmodule Katie do
 
   """
   def start(_type, _args)  do
-    IO.puts("starting Katie app")
+    host = Application.get_env(:katie, :host, '127.0.0.1')
+    port = Application.get_env(:katie , :port, 1978)
+    # reconnect = Application.get_env(__MODULE__, :reconnect, 5000)
+    IO.puts("starting Katie with #{host}:#{port}")
     # {:ok, pid} = :kterl.start_link()
     # true = Process.register pid, __MODULE__
     # {:ok, pid}

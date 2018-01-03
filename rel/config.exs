@@ -21,7 +21,7 @@ end
 release :katie do
   set version: current_version(:katie)
   set applications: [
-    :runtime_tools
+    :runtime_tools, :wx, :observer
   ]
 end
 
