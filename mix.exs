@@ -6,24 +6,29 @@ defmodule Katie.Mixfile do
       app: :katie,
       version: "0.1.0",
       elixir: "~> 1.5",
+      build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
+      aliases: aliases(),
       deps: deps()
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
-  def application do
+  def application() do
     [
       extra_applications: [:logger],
       mod: {Katie.Application, []}
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
-  defp deps do
-    [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
-    ]
+  defp aliases do
+    [dep: ["deps.get --only #{Mix.env}", "deps.compile"],
+     rel: ["compile", "release --env=prod"]]
+  end
+
+  defp deps() do
+    [{:kterl, github: "iwantmyname/kterl"},
+     {:credo, "~> 0.8", only: [:dev, :test]},
+     {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+     {:distillery, "~> 1.5", runtime: false}]
   end
 end
