@@ -1,3 +1,3 @@
 use Mix.Config
-config :katie, host: "localhost"
+config :katie, server: "localhost"
 config :logger, level: :info
