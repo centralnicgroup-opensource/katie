@@ -18,19 +18,24 @@ defmodule Katie do
   {:ok, Katie}
 
   """
-  def start() do
-    host  = Application.get_env(__MODULE__, :host, 'localhost')
-    port  = Application.get_env(__MODULE__, :port, 1978)
-    delay = Application.get_env(__MODULE__, :delay, 500)
+  def get_config_from_env() do
+    host  = Application.get_env(:katie, :host, 'localhost')
+    port  = Application.get_env(:katie, :port, 1978)
+    delay = Application.get_env(:katie, :backoff, 500)
+    [host: host, port: port, reconnect_sleep: delay]
+  end
 
+  def start() do
+    [host: host, port: port, reconnect_sleep: delay] = get_config_from_env()
+    start(host, port, delay)
   end
   def start(host, port \\ 1978, delay \\ 500) when is_list(host) do
-    case worker_pid = Process.whereis(__MODULE__) do
+    case worker_pid = Process.whereis(:katie) do
       _ when is_pid(worker_pid) -> {:ok, worker_pid}
       _                   ->
         {:ok, worker_pid} = :kterl.connect(host, port, delay)
-        true = Process.register(worker_pid, __MODULE__)
+        true = Process.register(worker_pid, :katie)
     end
-    {:ok, __MODULE__}
+    {:ok, :katie}
   end
 end
