@@ -3,4 +3,5 @@
 -emu_args
 -start_epmd false
 -s observer start
+-kernel shell_history_enabled
 -name katie@127.0.0.1
