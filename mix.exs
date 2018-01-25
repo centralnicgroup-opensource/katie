@@ -29,7 +29,7 @@ defmodule Katie.Mixfile do
 
   defp deps() do
     [
-      {:kterl, github: "iwantmyname/kterl"},
+      {:kterl, github: "iwantmyname/kterl", tag: "1.2.0"},
       {:credo, "~> 0.8", only: [:dev, :test]},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:distillery, "~> 1.5", runtime: false}
